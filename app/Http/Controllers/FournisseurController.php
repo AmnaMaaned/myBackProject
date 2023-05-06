@@ -30,17 +30,15 @@ class FournisseurController extends Controller
      */
     public function store(Request $request)
     {
-        $fournisseur = new Fournisseur([
-            
-            'Nom_F' => $request->input('Nom_F'),
-             'Tel_F' => $request->input('Tel_F'),
-             'Email_F' => $request->input('Email_F'),
-             
-             'adresse_F' => $request->input('adresse_F')
-             
-        ]);
-        $fournisseur->save();
-        return response()->json('Fournisseur créée !');
+    $fournisseurs = new Fournisseur();
+    $fournisseurs->Nom_F=$request['Nom_F'];
+    $fournisseurs->Tel_F=$request['Tel_F'];
+    $fournisseurs->Email_F=$request['Email_F'];
+    $fournisseurs->adresse_F=$request['adresse_F'];
+    $fournisseurs->save();
+    return response()->json(['success'=>true,'message'=>'ajout effectuée avec succées!']);
+
+
     }
 
     /**

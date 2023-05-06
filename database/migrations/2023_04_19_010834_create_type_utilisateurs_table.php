@@ -11,14 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('ligne_achats', function (Blueprint $table) {
+        Schema::create('type_utilisateurs', function (Blueprint $table) {
             $table->id();
+            $table->string('designation');
+            $table->Integer('product_id');
 
-            $table->Integer('article_id')->unsigned();
-            $table->Integer('achat_id')->unsigned();
-            $table->Integer('quantite')->unsigned();
-            $table->Integer('tva')->unsigned();
-            $table->Integer('prix')->unsigned();
+
+
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('ligne_achats');
+        Schema::dropIfExists('type_utilisateurs');
     }
 };

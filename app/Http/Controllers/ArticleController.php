@@ -30,23 +30,28 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        $article = new Article([
-             'Réf_article' => $request->input('Réf_article'),
-            'Famille' => $request->input('Famille'),
-            'Designation_article' => $request->input('Designation_article'),
-            'Image_article' => $request->input('Image_article'),
-            'Quantité_article' => $request->input('Quantité_article'),
-            'Alert_article' => $request->input('Alert_article'),
-            'Prix_achat_article' => $request->input('Prix_achat_article'),
-            'Prix_vente_article' => $request->input('Prix_vente_article'),
-            'Tva_article' => $request->input('Tva_article'),
-            'Date_Peremption_article' => $request->input('Date_Peremption_article')          
-        
-        ]);
-            $article->save();
-            return response()->json('Article créée !');
-    }
+       
+    
+    $articles = new Article();
+    $articles->reference=$request['reference'];
+    $articles->famille=$request['famille'];
+    $articles->designation_article=$request['designation_article'];
+    $articles->image_article=$request['image_article'];
+    $articles->quantite_article=$request['quantite_article'];
+    $articles->alert_article=$request['alert_article'];
+    $articles->prix_achat_article=$request['prix_achat_article'];
+    $articles->prix_vente_article=$request['prix_vente_article'];
+    $articles->tva_article=$request['tva_article'];
+    $articles->date_peremption_article=$request['date_peremption_article'];
+    $articles->save();
+    return response()->json(['success'=>true,'message'=>'ajout effectuée avec succées!']);
 
+   }
+       
+       
+
+       
+       
     /**
      * Display the specified resource.
      */

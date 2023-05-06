@@ -13,19 +13,19 @@ return new class extends Migration
     {
         Schema::create('articles', function (Blueprint $table) {
             $table->id();
-            $table->string('Réf_article');
-            $table->string('Famille');
-            $table->longText('Designation_article');
-            $table->string('Image_article')->nullable();
-            $table->longText('Quantité_article');
-            $table->string('Alert_article');
-            $table->float('Prix_achat_article');
-            $table->float('Prix_vente_article');
-            $table->string('Tva_article');
+            $table->string('reference');
+            $table->string('famille');
+            $table->longText('designation_article');
+            $table->string('image_article')->nullable();
+            $table->longText('quantite_article');
+            $table->string('alert_article');
+            $table->float('prix_achat_article');
+            $table->float('prix_vente_article');
+            $table->string('tva_article');
           
         
-            $table->date('Date_Peremption_article');
-    
+            $table->date('date_peremption_article');
+
             $table->timestamps();
         });
     }

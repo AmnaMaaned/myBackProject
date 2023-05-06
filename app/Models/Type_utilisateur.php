@@ -5,20 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Famille extends Model
+class Type_utilisateur extends Model
 {
-   
- 
-     /**
+    use HasFactory;
+
+  /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'nomfamille','imagefamille'
+        'designation'
     ];
-    public function Article()
+    public function Utilisateur()
     {
-        return $this->hasMany(Article::class);
+        return $this->belongsTo(Utilisateur::class);
     }
 }

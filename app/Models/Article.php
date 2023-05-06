@@ -14,8 +14,8 @@ class Article extends Model
      * @var array
      */
     protected $fillable = [
-        'Réf_article','Famille', 'Designation_article','Image_article','Quantité_article', 'Alert_article',
-        'Prix_achat_article','Prix_vente_article','Tva_article','Date_Peremption_article'
+        'reference','famille', 'designation_article','image_article','quantite_article', 'alert_article',
+        'prix_achat_article','prix_vente_article','tva_article','date_peremption_article'
     ];
 
     public function Famille()

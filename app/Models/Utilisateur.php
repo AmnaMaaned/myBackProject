@@ -13,11 +13,14 @@ class Utilisateur extends Model
      * @var array
      */
     protected $fillable = [
-        'Nom_utilisateur', 'Type_utilisateur','Login_utilisateur','Passsword_utilisateur'
+        'nom_utilisateur', 'type_utilisateur','login_utilisateur','passsword_utilisateur'
     ];
     public function Vente()
     {
         return $this->hasMany(Vente::class);
     }
- 
+    public function Type_utilisateur()
+    {
+        return $this->hasMany(Type_utilisateur::class);
+    }
 }

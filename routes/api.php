@@ -37,6 +37,19 @@ Route::middleware('api')->group(function () {
     Route::resource('articles', ArticleController::class);
      }); 
 
+  Route::middleware(['cors'])->group(function () {
+        Route::post('/hogehoge', 'Controller@hogehoge');
+        Route::resource('fournisseurs', FournisseurController::class);
+    });
+  
+Route::post('/AddClient', [ClientController::class, 'store']);
+
+//Route::post('/AddArticle', [App\Http\Controllers\ArticleController::class, 'store']);
+Route::post('/AddFourniseur', [FournisseurController::class, 'store']);
+Route::get('/ListFourniseur', [FournisseurController::class, 'index']);
+
+Route::put('/UpdateFourniseur/{id}', [ApFournisseurController::class, 'update']);
+Route::delete('/DeleteFourniseur', [ApFournisseurController::class, 'destroy']);
 Route::group([
     'middleware' => 'api',
     'prefix' => 'auth'

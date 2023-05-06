@@ -11,11 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('ligne_achats', function (Blueprint $table) {
+        Schema::create('ligne_ventes', function (Blueprint $table) {
             $table->id();
-
             $table->Integer('article_id')->unsigned();
-            $table->Integer('achat_id')->unsigned();
+            $table->Integer('vente_id')->unsigned();
             $table->Integer('quantite')->unsigned();
             $table->Integer('tva')->unsigned();
             $table->Integer('prix')->unsigned();
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('ligne_achats');
+        Schema::dropIfExists('ligne_ventes');
     }
 };

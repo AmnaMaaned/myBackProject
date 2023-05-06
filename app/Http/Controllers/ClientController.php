@@ -29,18 +29,18 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        $client = new Client([
-            'Nom_client' => $request->input('Nom_client'),
-            'Type_client' => $request->input('Type_client'),
-            'Tel_client' => $request->input('Tel_client'),
-            'Email_client' => $request->input('Email_client'),
-            'Adresse_client' => $request->input('Adresse_client')
-          
 
-        ]);
-        $client->save();
-        return response()->json('Client créée !');
-    }
+    $clients = new Client();
+    $clients->Nom_client=$request['Nom_client'];
+    $clients->Type_client=$request['Type_client'];
+    $clients->Tel_client=$request['Tel_client'];
+    $clients->Email_client=$request['Email_client'];
+    $clients->Adresse_client=$request['Adresse_client'];
+    
+    $clients->save();
+    return response()->json(['success'=>true,'message'=>'ajout effectuée avec succées!']);
+
+   }
 
     /**
      * Display the specified resource.

@@ -30,6 +30,20 @@ class FamilleController extends Controller
      */
     public function store(Request $request)
     {
+
+     
+
+    $familles = new Famille();
+    $familles->Nom_famille=$request['Nom_famille'];
+    $familles->Image_famille=$request['Image_famille'];
+ 
+    $familles->save();
+    return response()->json(['success'=>true,'message'=>'ajout effectuée avec succées!']);
+
+
+
+
+
         $famille = new Famille([
              'Nom_famille' => $request->input('Nom_famille'),
              'Image_famille' => $request->input('Image_famille')
