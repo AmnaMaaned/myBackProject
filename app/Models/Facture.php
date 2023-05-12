@@ -5,16 +5,21 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Societe extends Model
+class Facture extends Model
 {
-   
-      /**
+    use HasFactory;
+  /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'Nom_raison_social','Adresse', 'Tel','Activite','Matricule','Logo'
+        'dateFacture','montantTotal', 'Nom_client'
+       
     ];
 
+    public function Vente()
+    {
+        return $this->belongsTo(Vente::class);
+    }
 }

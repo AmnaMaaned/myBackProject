@@ -17,7 +17,10 @@ class Vente extends Model
     protected $fillable = [
         'Date_vente','utilisateur'
     ];
-
+    public function Facture()
+    {
+        return $this->hasMany(Facture::class);
+    }
     public function Utilisateur()
     {
         return $this->belongsTo(Utilisateur::class);

@@ -14,7 +14,8 @@ class LigneAchat extends Model
      * @var array
      */
     protected $fillable = [
-        'IDAchat','IDProduit','Quantite','Prix','Sous_total','DateExp'
+       
+        'achat_id', 'article_id', 'quantite','tva', 'prix_unitaire'
     ];
 
 

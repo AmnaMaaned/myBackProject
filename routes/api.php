@@ -23,25 +23,38 @@ use App\Http\Controllers\AuthController;
 Route::middleware('api')->group(function () {
     Route::resource('utilisateurs', UtilisateurController::class);
     });
-Route::middleware('api')->group(function () {
-     Route::resource('fournisseurs', FournisseurController::class);
-    }); 
+// Route::middleware('api')->group(function () {
+//      Route::resource('fournisseurs', FournisseurController::class);
+//     }); 
 Route::middleware('api')->group(function () {
     Route::resource('clients', ClientController::class);
     });   
 Route::middleware('api')->group(function () {
-    Route::resource('familles', FamilleController::class);
+    Route::resource('ventes', VenteController::class);
     });  
-
+ Route::middleware('api')->group(function () {
+        Route::resource('lignevente', LigneventeController::class);
+        });
+ Route::middleware('api')->group(function () {
+    Route::resource('achats',AchatController::class);
+     });  
+ Route::middleware('api')->group(function () {
+     Route::resource('ligneachat', LigneachatController::class);
+          });
+Route::middleware('api')->group(function () {
+    Route::resource('familles', FamilleController::class);
+     });
 Route::middleware('api')->group(function () {
     Route::resource('articles', ArticleController::class);
      }); 
 
   Route::middleware(['cors'])->group(function () {
         Route::post('/hogehoge', 'Controller@hogehoge');
-        Route::resource('fournisseurs', FournisseurController::class);
     });
-  
+
+Route::middleware('api')->group(function () {
+   Route::resource('fournisseurs', FournisseurController::class);
+});  
 Route::post('/AddClient', [ClientController::class, 'store']);
 
 //Route::post('/AddArticle', [App\Http\Controllers\ArticleController::class, 'store']);

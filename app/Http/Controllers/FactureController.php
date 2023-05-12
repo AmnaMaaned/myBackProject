@@ -1,20 +1,20 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Vente;
-
+use App\Models\Facture;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 
-class VenteController extends Controller
+class FactureController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $ventes = Vente::all()->toArray();
-        return array_reverse($ventes);
+        $factures = Facture::all()->toArray();
+        return array_reverse($factures);
     }
 
     /**
@@ -30,12 +30,13 @@ class VenteController extends Controller
      */
     public function store(Request $request)
     {
-            
-        $ventes = new Vente();
-         $ventes->date_achat=$request['date_achat'];
-        $ventes->montant_total=$request['montant_total'];
-        $ventes->save();
-        return response()->json(['success'=>true,'message'=>'ajout effectuée avec succées!']);
+       $factures = new Facture();
+       $factures->dateFacture=$request['dateFacture'];
+       $factures->montantTotal=$request['montantTotal'];
+       $factures->Nom_client=$request['Nom_client'];
+       $factures->save();
+    return response()->json(['success'=>true,'message'=>'ajout effectuée avec succées!']);
+
     }
 
     /**
@@ -43,8 +44,8 @@ class VenteController extends Controller
      */
     public function show(string $id)
     {
-        $ventes = Vente::find($id);
-        return response()->json($ventes);
+        $facture = Facture::find($id);
+        return response()->json($facture);
     }
 
     /**
@@ -60,9 +61,9 @@ class VenteController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $vente = Vente::find($id);
-        $vente->update($request->all());
-       return response()->json('Vente MAJ !'); 
+          $facture = Facture::find($id);
+       $facture->update($request->all());
+      return response()->json('Facture MAJ !'); 
     }
 
     /**
@@ -70,8 +71,8 @@ class VenteController extends Controller
      */
     public function destroy(string $id)
     {
-        $vente = Vente::find($id);
-        $vente->delete();
-     return response()->json('vente supprimée !');
+        $facture = Facture::find($id);
+        $facture->delete();
+     return response()->json('Facture supprimée !');
     }
 }

@@ -12,10 +12,9 @@ class Achat extends Model
      *
      * @var array
      */
-    protected $fillable = [
-       'Date_achat'
-    ];
+    protected $fillable = ['date_achat', 'montant_total'];
 
+ 
     public function fournisseur()
     {
         return $this->belongsTo(Fournisseur::class);

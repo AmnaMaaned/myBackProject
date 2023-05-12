@@ -2,21 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
-use App\Models\Achat;
-
-
-class AchatController extends Controller
+use App\Models\LigneAchat;
+class LigneachatController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $achats = Achat::all()->toArray();
-        return array_reverse($achats);
+        $ligneachat = LigneAchat::all()->toArray();
+        return array_reverse($ligneachat);
     }
 
     /**
@@ -30,13 +26,16 @@ class AchatController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+public function store(Request $request)
     {
 
-    $achats = new Achat();
-    $achats->date_achat=$request['date_achat'];
-    $achats->montant_total=$request['montant_total'];
-    $achats->save();
+    $ligneachat = new LigneAchat();
+    $ligneachat->achat_id=$request['achat_id'];
+    $ligneachat->article_id=$request['article_id'];
+    $ligneachat->quantite=$request['quantite'];
+    $ligneachat->tva=$request['tva'];
+    $ligneachat->prix_unitaire=$request['prix_unitaire'];
+    $ligneachat->save();
     return response()->json(['success'=>true,'message'=>'ajout effectuée avec succées!']);
 
    }
@@ -46,8 +45,8 @@ class AchatController extends Controller
      */
     public function show(string $id)
     {
-        $achat = Achat::find($id);
-        return response()->json($achat);
+        $ligneachat = LigneAchat::find($id);
+        return response()->json($ligneachat);
     }
 
     /**
@@ -63,9 +62,9 @@ class AchatController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $achat = Achat::find($id);
-        $achat->update($request->all());
-       return response()->json('Achat MAJ !'); 
+        $ligneachat = LigneAchat::find($id);
+        $ligneachat->update($request->all());
+       return response()->json('Ligneachat MAJ !'); 
     }
 
     /**
@@ -73,9 +72,9 @@ class AchatController extends Controller
      */
     public function destroy(string $id)
     {
-        $achat = Achat::find($id);
-        $achat->delete();
-     return response()->json('Achat supprimée !');
+        $ligneachat = LigneAchat::find($id);
+        $ligneachat->delete();
+     return response()->json('Ligneachat supprimée !');
     }
 
 }

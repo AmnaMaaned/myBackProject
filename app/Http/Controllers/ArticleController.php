@@ -30,7 +30,6 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-       
     
     $articles = new Article();
     $articles->reference=$request['reference'];
