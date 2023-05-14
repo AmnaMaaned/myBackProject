@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('ligne_achats', function (Blueprint $table) {
             $table->id();
-           
-            $table->Integer('article_id')->unsigned();
-            $table->Integer('achat_id')->unsigned();
-            $table->Integer('quantite')->unsigned();
-            $table->Integer('tva')->unsigned();
-            $table->Integer('prix_unitaire')->unsigned();
+            $table->foreignId('article_id')->constrained()->onDelete('cascade');
+            $table->foreignId('achat_id')->constrained()->onDelete('cascade');
+        
+            $table->Integer('quantite');
+            $table->Integer('tva');
+            $table->Integer('prix_unitaire');
             $table->timestamps();
         });
     }

@@ -22,11 +22,14 @@ class Article extends Model
     {
         return $this->belongsTo(Famille::class);
     }
-    public function ligneachat()
+    public function achat()
     {
-        return $this->hasMany(LigneAchat::class);
+        return $this->belongsToMany(Achat::class);
     }
-
+    public function vente()
+    {
+        return $this->belongsToMany(Vente::class);
+    }
 
   
 

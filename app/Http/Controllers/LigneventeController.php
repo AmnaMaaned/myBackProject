@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\LigneVente;
+use App\Models\Vente;
+use App\Models\Article;
 class VenteachatController extends Controller
 {
     /**
@@ -18,9 +20,17 @@ class VenteachatController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+    
+        // Valider les données saisies dans le formulaire
+        $validatedData = $request->validate([
+            'date_achat' => 'required|date',
+            'montant_total' => 'required|numeric|min:0',
+            'lignes_achat.*.produit_id' => 'required|numeric',
+            'lignes_achat.*.quantite' => 'required|numeric|min:1',
+            'lignes_achat.*.prix_unitaire' => 'required|numeric|min:0',
+        ]);
     }
 
     /**
@@ -28,18 +38,54 @@ class VenteachatController extends Controller
      */
 public function store(Request $request)
     {
-
+    $vente=Vente::all();
+    $article=Article::all();
     $lignevente = new LigneVente();
-    $lignevente->achat_id=$request['achat_id'];
+    $lignevente->vente_id=$request['vente_id'];
     $lignevente->article_id=$request['article_id'];
     $lignevente->quantite=$request['quantite'];
     $lignevente->tva=$request['tva'];
     $lignevente->prix_unitaire=$request['prix_unitaire'];
     $lignevente->save();
-    return response()->json(['success'=>true,'message'=>'ajout effectuée avec succées!']);
+    return response()->json(['success'=>true,'message'=>'ajout effectuée avec succées!',]);
 
    }
-    
+
+   public function ajouterAchat(Request $request)
+   {
+       // Validation des données entrées par l'utilisateur
+       $this->validate($request, [
+           'date' => 'required|date',
+           'fournisseur_id' => 'required|exists:fournisseurs,id',
+           'produits.*.produit_id' => 'required|exists:produits,id',
+           'produits.*.quantite' => 'required|numeric|min:1',
+           'produits.*.prix' => 'required|numeric|min:0',
+       ]);
+
+       // Ajout des lignes d'ventes
+       $articles = $request->input('articles');
+       foreach ($articles as $articleData) {
+           $lignevente = new LigneVente();
+        //    $lignevente->vente_id = $vente->id;
+           $lignevente->article_id = $articleData['article_id'];
+           $lignevente->quantite = $articleData['quantite'];
+           $lignevente->prix = $articleData['Prix_HTVente'];
+        //    'vente_id', 'article_id', 'quantite','TVAVente', 'Prix_HTVente'
+           $lignevente->save();
+       }
+   
+       // Réponse de succès
+       return response()->json(['message' => 'Achat ajouté avec succès'], 201);
+   }
+
+
+
+
+
+
+
+
+
     /**
      * Display the specified resource.
      */

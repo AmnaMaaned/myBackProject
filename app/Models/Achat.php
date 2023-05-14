@@ -14,14 +14,13 @@ class Achat extends Model
      */
     protected $fillable = ['date_achat', 'montant_total'];
 
- 
+    public function article()
+    {
+        return $this->belongsToMany(Article::class);
+    }
+    
     public function fournisseur()
     {
         return $this->belongsTo(Fournisseur::class);
-    }
-
-    public function ligneachat()
-    {
-        return $this->hasMany(LigneAchat::class);
     }
 }

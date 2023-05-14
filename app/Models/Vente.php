@@ -15,8 +15,12 @@ class Vente extends Model
      * @var array
      */
     protected $fillable = [
-        'Date_vente','utilisateur'
+        'datevente','totalvente'
     ];
+    public function article()
+    {
+        return $this->belongsToMany(Article::class);
+    }
     public function Facture()
     {
         return $this->hasMany(Facture::class);

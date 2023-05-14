@@ -22,18 +22,16 @@ class VenteController extends Controller
      */
     public function create()
     {
-        //
     }
-
+     
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-            
+    {       
         $ventes = new Vente();
-         $ventes->date_achat=$request['date_achat'];
-        $ventes->montant_total=$request['montant_total'];
+         $ventes->date_achat=$request['datevente'];
+        $ventes->montant_total=$request['totalvente'];
         $ventes->save();
         return response()->json(['success'=>true,'message'=>'ajout effectuée avec succées!']);
     }
